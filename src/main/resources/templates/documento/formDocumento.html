@@ -8,18 +8,20 @@
     <title>Pessoa APP</title>
 </head>
 <body>
-    <h1>Cadastro de Pessoas</h1>
-    <form th:action="@{cadastroPessoa}" th:object="${pessoa}" method="post">
-        <label for="nome">Nome</label>
-        <input type="text" name="nome">
-        <label for="email">email</label>
-        <input type="text" name="email">
-        <label for="telefone">telefone</label>
-        <input type="text" name="telefone">      
+    <h1>Cadastro de Documentos</h1>
+    <form th:action="@{cadastroDocumento}" th:object="${documento}" method="post">
+        <input type="hidden" name="id" th:value="${id}" />
+        <label for="nrDocumento">Número do Documento</label>
+        <input type="text" name="nrDocumento">
+        <select class="form-select" aria-label="Default select example" name="tpDocumento">
+            <option selected>Selecione</option>
+            <option value="RG">RG</option>
+            <option value="CPF">CPF</option>
+            <option value="CNH">CNH</option>
+          </select>      
         <input type="submit" value="enviar">
 
     </form>
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

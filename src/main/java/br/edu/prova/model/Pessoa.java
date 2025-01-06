@@ -1,12 +1,16 @@
 package br.edu.prova.model;
 
+import java.util.List;
 import java.util.UUID;
 
-import br.edu.prova.dto.PessoaDTO;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "pessoa")
@@ -17,15 +21,20 @@ public class Pessoa {
     private String nome;
     private String email;
     private Long telefone;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Documento> documentos;
 
-    public Pessoa(PessoaDTO pessoaDTO){
-        this.id = pessoaDTO.id();
-        this.nome = pessoaDTO.nome();
-        this.email = pessoaDTO.email();
-        this.telefone = pessoaDTO.telefone();
+    public Pessoa(){
+
     }
-
-
+    
+       public Pessoa(UUID id, String nome, String email, Long telefone, List<Documento> documentos) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.documentos = documentos;
+    }
 
     public UUID getId() {
         return id;
@@ -51,7 +60,15 @@ public class Pessoa {
     public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
-
-
+    public List<Documento> getDocumentos() {
+        return documentos;
+    }
+    public void setDocumentos(List<Documento> documentos) {
+        this.documentos = documentos;
+    }
+   
     
+
+
+       
 }
